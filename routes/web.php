@@ -16,5 +16,6 @@ $router->get('/', function () use ($router) {
     if (env('APP_DEBUG')) {
         Debugbar::debug('Boot home page');
     }
-    return view('index');
+    $domains = DB::select('SELECT * FROM domains');
+    return view('index', compact('domains'));
 });

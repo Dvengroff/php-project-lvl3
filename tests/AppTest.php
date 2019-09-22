@@ -7,6 +7,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class AppTest extends TestCase
 {
+    use DatabaseMigrations;
     /**
      * A home page test.
      *
