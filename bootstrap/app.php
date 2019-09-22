@@ -88,6 +88,8 @@ if (env('APP_DEBUG')) {
     $app->withFacades();
 }
 
+$app->configure('database');
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
