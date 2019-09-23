@@ -13,11 +13,10 @@ use App\Domain;
 |
 */
 
-$router->get('/', function () use ($router) {
+$router->get('/', ['as' => 'index', function () use ($router) {
     Log::info('Boot home page');
     if (env('APP_DEBUG')) {
         Debugbar::debug('Boot home page');
     }
-    $domains = Domain::all();
-    return view('index', compact('domains'));
-});
+    return view('index');
+}]);
