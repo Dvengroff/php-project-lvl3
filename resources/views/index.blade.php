@@ -24,7 +24,14 @@
                     <input type="text" name="url" class="form-control" id="page-url-input" placeholder="https://www.example.com" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Анализировать</button>
-            </form>                
+            </form>
+            @if (isset($errors))
+                @foreach ($errors as $error)
+                    <div class="alert alert-warning" role="alert">
+                        {{$error}}
+                    </div>
+                @endforeach
+            @endif                
         </div>
     </div>
 @endsection

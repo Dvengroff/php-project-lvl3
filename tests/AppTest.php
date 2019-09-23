@@ -16,6 +16,7 @@ class AppTest extends TestCase
     public function testIndexPage()
     {
         $this->get('/');
+
         $this->assertResponseStatus(200);
     }
 
@@ -34,5 +35,13 @@ class AppTest extends TestCase
 
         $this->seeInDatabase('domains', ['name' => $domain->name]);
         $this->assertResponseStatus(302);
+    }
+
+    public function testDomainStoreFailed()
+    {
+        $url = "simple text";
+        $this->post(route('domains.store'), ['url' => $url]);
+
+        $this->assertResponseStatus(422);
     }
 }
