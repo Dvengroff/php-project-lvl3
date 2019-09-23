@@ -1,5 +1,7 @@
 <?php
 
+use App\Domain;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,6 +18,6 @@ $router->get('/', function () use ($router) {
     if (env('APP_DEBUG')) {
         Debugbar::debug('Boot home page');
     }
-    $domains = DB::select('SELECT * FROM domains');
+    $domains = Domain::all();
     return view('index', compact('domains'));
 });
