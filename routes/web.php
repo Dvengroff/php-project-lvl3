@@ -13,10 +13,23 @@ use App\Domain;
 |
 */
 
-$router->get('/', ['as' => 'index', function () use ($router) {
-    Log::info('Boot home page');
-    if (env('APP_DEBUG')) {
-        Debugbar::debug('Boot home page');
-    }
-    return view('index');
-}]);
+$router->get(
+    '/',
+    ['as' => 'index', function () use ($router) {
+        Log::info('Boot home page');
+        if (env('APP_DEBUG')) {
+            Debugbar::debug('Boot home page');
+        }
+        return view('index');
+    }]
+);
+
+$router->post(
+    '/domains',
+    ['as' => 'domains.store', 'uses' => 'DomainController@store']
+);
+
+$router->get(
+    '/domains/{id}',
+    ['as' => 'domains.show', 'uses' => 'DomainController@show']
+);

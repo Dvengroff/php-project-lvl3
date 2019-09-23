@@ -21,7 +21,7 @@
             <form action="/domains" method="post">
                 <div class="form-group">
                     <label for="page-url-input">Введите URL веб-страницы:</label>
-                    <input type="text" name="name" class="form-control" id="page-url-input" placeholder="https://www.example.com" required>
+                    <input type="text" name="url" class="form-control" id="page-url-input" placeholder="https://www.example.com" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Анализировать</button>
             </form>                
