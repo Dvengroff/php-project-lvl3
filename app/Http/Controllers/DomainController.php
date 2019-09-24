@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Domain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+use Barryvdh\Debugbar\Facade as Debugbar;
 
 
 class DomainController extends Controller
@@ -33,9 +35,14 @@ class DomainController extends Controller
             ]
         );
         if ($validator->fails()) {
+            Log::info('Invalid input data');
+            if (env('APP_DEBUG')) {
+                Debugbar::debug('Invalid input data');
+            }
             $errors = $validator->errors()->all();
             return response(view('index', compact('errors')), 422);
         }
+
         $url = $request->input('url');
         $domain = Domain::create(['name' => $url]);
         return redirect()->route('domains.show', ['id' => $domain->id]);
@@ -44,6 +51,10 @@ class DomainController extends Controller
     public function show($id)
     {
         $domain = Domain::findOrFail($id);
+        Log::info('Boot domain.show page');
+        if (env('APP_DEBUG')) {
+            Debugbar::debug('Boot domain.show page');
+        }
         return view('domains.show', compact('domain'));
     }
 }

@@ -18,7 +18,7 @@
         <div class="jumbotron">
             <h3>Анализ страницы</h1>
             <hr class="my-3">
-            <form action="/domains" method="post">
+            <form action="{{route('domains.store')}}" method="post">
                 <div class="form-group">
                     <label for="page-url-input">Введите URL веб-страницы:</label>
                     <input type="text" name="url" class="form-control" id="page-url-input" placeholder="https://www.example.com" required>
