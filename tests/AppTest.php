@@ -44,4 +44,11 @@ class AppTest extends TestCase
 
         $this->assertResponseStatus(422);
     }
+
+    public function testDomainsPage()
+    {
+        $this->get(route('domains.index'));
+
+        $this->assertResponseStatus(200);
+    }
 }

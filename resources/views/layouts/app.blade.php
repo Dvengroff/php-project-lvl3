@@ -25,6 +25,9 @@
                             <a class="nav-link" href="{{route('index')}}">Главная</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('domains.index')}}">База страниц</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="https://github.com/Dvengroff/php-project-lvl3">GitHub</a>
                         </li>
                     </ul>

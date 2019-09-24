@@ -21,6 +21,16 @@ class DomainController extends Controller
         //
     }
 
+    public function index()
+    {
+        $domains = Domain::all();
+        Log::info('Boot domain.index page');
+        if (env('APP_DEBUG')) {
+            Debugbar::debug('Boot domain.index page');
+        }
+        return view('domains.index', compact('domains'));
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make(
