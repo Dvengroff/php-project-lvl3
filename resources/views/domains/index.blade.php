@@ -28,7 +28,8 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>                
+            </table>
+            {{$domains->links()}}                
         </div>
     </div>
 @endsection

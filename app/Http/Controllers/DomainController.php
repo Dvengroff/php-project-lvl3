@@ -23,7 +23,7 @@ class DomainController extends Controller
 
     public function index()
     {
-        $domains = Domain::all();
+        $domains = Domain::paginate(10);
         Log::info('Boot domain.index page');
         if (env('APP_DEBUG')) {
             Debugbar::debug('Boot domain.index page');

@@ -47,6 +47,7 @@ class AppTest extends TestCase
 
     public function testDomainsPage()
     {
+        $domains = factory(\App\Domain::class, 15)->create();
         $this->get(route('domains.index'));
 
         $this->assertResponseStatus(200);
