@@ -54,7 +54,20 @@ class DomainController extends Controller
         }
 
         $url = $request->input('url');
-        $domain = Domain::create(['name' => $url]);
+        $client = app('HttpClient');
+        $response = $client->get($url);
+        
+        $status = $response->getStatusCode();
+        $contentLength = $response->getHeader('Content-Length')[0];
+        $bodyString = (string) $response->getBody();
+        $domain = Domain::create(
+            [
+                'name' => $url,
+                'status' => $status,
+                'content_length' => $contentLength,
+                'content' => $bodyString
+            ]
+        );
         return redirect()->route('domains.show', ['id' => $domain->id]);
     }
 
