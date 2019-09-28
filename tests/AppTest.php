@@ -34,9 +34,10 @@ class AppTest extends TestCase
 
     public function testDomainStore()
     {
+        $body = file_get_contents(__DIR__ . "/fixtures/test.html");
         $mock = new MockHandler(
             [
-                new Response(200, ['Content-Length' => 5], 'hello')
+                new Response(200, ['Content-Length' => 5], $body)
             ]
         );
         $handler = HandlerStack::create($mock);
