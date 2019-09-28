@@ -51,6 +51,13 @@ $app->bind(
     }
 );
 
+$app->bind(
+    'HtmlParser',
+    function () {
+        return new DiDom\Document();
+    }
+);
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
