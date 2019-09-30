@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain;
+use App\Jobs\AnalyzeDomainJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
@@ -54,32 +55,8 @@ class DomainController extends Controller
         }
 
         $url = $request->input('url');
-        $client = app('HttpClient');
-        $response = $client->get($url);
-        
-        $status = $response->getStatusCode();
-        $contentLength = $response->getHeader('Content-Length')[0] ?? null;
-        $bodyString = $response->getBody()->getContents();
-        
-        $htmlDoc = app('HtmlParser')->loadHtml($bodyString);
-        $h1Tag = $htmlDoc->first('h1');
-        $h1Content = $h1Tag ? $h1Tag->text() : null;
-        $keywordsMetaTag = $htmlDoc->first('meta[name=keywords]');
-        $keywordsContent = $keywordsMetaTag ? $keywordsMetaTag->attr('content') : null;
-        $descriptionMetaTag = $htmlDoc->first('meta[name=description]');
-        $descriptionContent = $descriptionMetaTag ? $descriptionMetaTag->attr('content') : null;
-
-        $domain = Domain::create(
-            [
-                'name' => $url,
-                'status' => $status,
-                'content_length' => $contentLength,
-                'body' => $bodyString,
-                'h1' => $h1Content,
-                'keywords' => $keywordsContent,
-                'description' => $descriptionContent
-            ]
-        );
+        $domain = Domain::create(['name' => $url]);
+        dispatch(new AnalyzeDomainJob($domain));
         return redirect()->route('domains.show', ['id' => $domain->id]);
     }
 
