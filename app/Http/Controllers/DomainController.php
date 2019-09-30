@@ -59,7 +59,7 @@ class DomainController extends Controller
         
         $status = $response->getStatusCode();
         $contentLength = $response->getHeader('Content-Length')[0] ?? null;
-        $bodyString = (string) $response->getBody();
+        $bodyString = $response->getBody()->getContents();
         
         $htmlDoc = app('HtmlParser')->loadHtml($bodyString);
         $h1Tag = $htmlDoc->first('h1');
