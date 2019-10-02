@@ -40,9 +40,9 @@ class DomainController extends Controller
                 'url' => 'required|url|unique:domains,name'
             ],
             [
-                'required' => 'Пожалуйста, заполните поле с URL веб-страницы!',
-                'url' => 'Введеный URL не является допустимым!',
-                'unique' => 'Введенный URL уже находится в базе сервиса!'
+                'required' => 'Поле с URL не может оставаться пустым!',
+                'url' => 'Введеный URL не является корректным!',
+                'unique' => 'Страница с введенным URL уже анализировалась и находится в базе сервиса!'
             ]
         );
         if ($validator->fails()) {

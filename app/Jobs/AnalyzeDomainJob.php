@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Domain;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Log;
 
 class AnalyzeDomainJob extends Job
 {
@@ -46,9 +47,11 @@ class AnalyzeDomainJob extends Job
             $this->domain->h1 = $h1Content;
             $this->domain->keywords = $keywordsContent;
             $this->domain->description = $descriptionContent;
+            $this->domain->stateMachine()->apply('complete');
             $this->domain->save();
         } catch (RequestException $e) {
-            $this->domain->status = $e->getMessage();
+            Log::info($e->getMessage());
+            $this->domain->stateMachine()->apply('fail');
             $this->domain->save();
         }       
     }
