@@ -103,6 +103,9 @@ if (env('APP_DEBUG')) {
 
 $app->configure('database');
 
+$app->configure('state-machine');
+$app->register(Sebdesign\SM\ServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

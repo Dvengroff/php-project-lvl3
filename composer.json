@@ -14,7 +14,8 @@
         "php": "^7.2",
         "guzzlehttp/guzzle": "^6.3",
         "imangazaliev/didom": "^1.14",
-        "laravel/lumen-framework": "^6.0"
+        "laravel/lumen-framework": "^6.0",
+        "sebdesign/laravel-state-machine": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
