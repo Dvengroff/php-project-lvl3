@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use SM\Factory\Factory as SMFactory;
 
 class Domain extends Model
 {
@@ -15,4 +16,11 @@ class Domain extends Model
         'keywords',
         'description'
     ];
+
+    public function stateMachine()
+    {
+        $factory = new SMFactory(config('state-machine'));
+
+        return $factory->get($this, 'domain_state_graph');
+    }
 }
