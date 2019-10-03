@@ -35,7 +35,6 @@
             </nav>
         </header>
         <main>
-            @yield('page_header')
             @yield('page_content')
         </main>
         <footer>

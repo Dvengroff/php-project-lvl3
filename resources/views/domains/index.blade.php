@@ -1,35 +1,62 @@
 @extends('layouts.app')
 
-@section('title', 'Список страниц')
+@section('title', 'База страниц')
 
 @section('page_content')
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Список загруженных страниц</h1>
-            <hr class="my-3">
-            <table class="table">
-                <thead>
+    <div class='jumbotron jumbotron-fluid bg-dark py-2 mb-3'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-lg-7 col-md-9 col-sm-12 text-white'>
+                    <h1>База страниц</h1>
+                    <hr class="my-3 mx-md-5 bg-secondary">
+                    <p class="text-white-50 mb-2 mx-md-5">
+                        Содержит список всех веб-страниц, которые были загружены на сервис
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mx-md-5 mx-sm-2 mb-3 p-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">URL-адрес</th>
+                    <th scope="col">Статус анализа</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($domains as $domain)
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">URL страницы</th>
-                        <th scope="col">Добавлена</th>
-                        <th scope="col">Обновлена</th>
+                        <th scope="row">{{$domain->id}}</th>
+                        <td>
+                            <a href="{{route('domains.show', ['id' => $domain->id])}}">{{$domain->name}}</a>
+                        </td>
+                        <td>
+                            @switch($domain->state)
+                                @case('init')
+                                    <span class="badge badge-primary">
+                                        выполняется
+                                    </span>
+                                    @break
+                                @case('completed')
+                                    <span class="badge badge-success">
+                                        выполнен успешно
+                                    </span>
+                                    @break
+                                @case('failed')
+                                    <span class="badge badge-danger">
+                                        выполнить не удалось
+                                    </span>
+                                    @break
+                            @endswitch
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($domains as $domain)
-                        <tr>
-                            <th scope="row">{{$domain->id}}</th>
-                            <td>
-                                <a href="{{route('domains.show', ['id' => $domain->id])}}">{{$domain->name}}</a>
-                            </td>
-                            <td>{{$domain->created_at}}</td>
-                            <td>{{$domain->updated_at}}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {{$domains->links()}}                
+                @endforeach
+            </tbody>
+        </table>
+        <div class="mx-auto">
+            {{$domains->links()}}
         </div>
     </div>
 @endsection
