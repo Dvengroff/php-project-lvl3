@@ -28,7 +28,7 @@ class AnalyzeDomainJob extends Job
     {
         $client = app('HttpClient');
         try {
-            $response = $client->get($this->domain->name);        
+            $response = $client->get($this->domain->name);
             $status = $response->getStatusCode();
             $contentLength = $response->getHeader('Content-Length')[0] ?? null;
             $bodyString = $response->getBody()->getContents();
@@ -49,10 +49,12 @@ class AnalyzeDomainJob extends Job
             $this->domain->description = $descriptionContent;
             $this->domain->stateMachine()->apply('complete');
             $this->domain->save();
+            Log::info("Domain analysis {$this->domain->state}");
         } catch (RequestException $e) {
             Log::info($e->getMessage());
             $this->domain->stateMachine()->apply('fail');
             $this->domain->save();
-        }       
+            Log::info("Domain analysis {$this->domain->state}");
+        }
     }
 }

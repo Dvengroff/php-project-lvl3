@@ -16,10 +16,8 @@ use App\Domain;
 $router->get(
     '/',
     ['as' => 'index', function () use ($router) {
-        Log::info('Boot home page');
-        if (env('APP_DEBUG')) {
-            Debugbar::debug('Boot home page');
-        }
+        $url = route('index');
+        Log::info("Boot {$url} page");
         return view('index');
     }]
 );

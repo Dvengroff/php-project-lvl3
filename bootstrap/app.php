@@ -21,6 +21,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
+$app->withFacades();
 $app->withEloquent();
 
 /*
@@ -96,9 +97,6 @@ if (env('APP_DEBUG')) {
     $app->register(Barryvdh\Debugbar\LumenServiceProvider::class);
     $app->configure('app');
     $app->configure('debugbar');
-    $app->withFacades(true, ['Barryvdh\Debugbar\Facade' => 'Debugbar']);
-} else {
-    $app->withFacades();
 }
 
 $app->configure('database');
@@ -117,10 +115,13 @@ $app->register(Sebdesign\SM\ServiceProvider::class);
 |
 */
 
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
-], function ($router) {
-    require __DIR__ . '/../routes/web.php';
-});
+$app->router->group(
+    [
+        'namespace' => 'App\Http\Controllers',
+    ],
+    function ($router) {
+        require __DIR__ . '/../routes/web.php';
+    }
+);
 
 return $app;
