@@ -47,8 +47,8 @@ class DomainController extends Controller
             return response(view('index', compact('errors')), 422);
         }
 
-        $url = $request->input('url');
-        $domain = Domain::create(['name' => $url]);
+        $domainUrl = $request->input('url');
+        $domain = Domain::create(['name' => $domainUrl]);
         dispatch(new AnalyzeDomainJob($domain));
         Log::info("Domain analysis init");
         return redirect()->route('domains.show', ['id' => $domain->id]);

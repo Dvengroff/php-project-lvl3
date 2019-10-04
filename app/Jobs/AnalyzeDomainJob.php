@@ -33,12 +33,12 @@ class AnalyzeDomainJob extends Job
             $contentLength = $response->getHeader('Content-Length')[0] ?? null;
             $bodyString = $response->getBody()->getContents();
             
-            $htmlDoc = app('HtmlParser')->loadHtml($bodyString);
-            $h1Tag = $htmlDoc->first('h1');
+            $html = app('HtmlParser')->loadHtml($bodyString);
+            $h1Tag = $html->first('h1');
             $h1Content = $h1Tag ? $h1Tag->text() : null;
-            $keywordsMetaTag = $htmlDoc->first('meta[name=keywords]');
+            $keywordsMetaTag = $html->first('meta[name=keywords]');
             $keywordsContent = $keywordsMetaTag ? $keywordsMetaTag->attr('content') : null;
-            $descriptionMetaTag = $htmlDoc->first('meta[name=description]');
+            $descriptionMetaTag = $html->first('meta[name=description]');
             $descriptionContent = $descriptionMetaTag ? $descriptionMetaTag->attr('content') : null;
 
             $this->domain->status = $status;
