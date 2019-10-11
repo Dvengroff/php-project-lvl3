@@ -1,31 +1,33 @@
 @extends('layouts.app')
 
-@section('title', 'Анализ страницы')
+@section('title')
+    @lang('main.analysis')
+@endsection
 
 @section('page_content')
     <div class='jumbotron jumbotron-fluid bg-dark py-2 mb-3'>
         <div class='container'>
             <div class='row'>
                 <div class='col-lg-7 col-md-9 col-sm-12 text-white'>
-                    <h1>Анализ страницы</h1>
+                    <h1>@lang('main.analysis')</h1>
                     <hr class="my-3 mx-md-5 bg-secondary">
                     <p class="lead text-primary font-weight-bold mb-2 mx-md-5"><u>{{$domain->name}}</u></p>
                     <p class="lead mb-2 mx-md-5">
-                        <span class="mr-2">Статус:</span>
+                        <span class="mr-2">@lang('domain.state'):</span>
                         @switch($domain->state)
                             @case('init')
                                 <span class="badge badge-primary">
-                                    выполняется
+                                    @lang('domain.state_message.init')
                                 </span>
                                 @break
                             @case('completed')
                                 <span class="badge badge-success">
-                                    выполнен успешно
+                                    @lang('domain.state_message.completed')
                                 </span>
                                 @break
                             @case('failed')
                                 <span class="badge badge-danger">
-                                    выполнить не удалось
+                                    @lang('domain.state_message.failed')
                                 </span>
                                 @break
                         @endswitch
@@ -36,7 +38,7 @@
     </div>
     @if ($domain->state === "init")
         <div class="alert alert-info mx-md-5 mx-sm-2 mb-3 p-3" role="alert">
-            Выполняется запрос к веб-странице. Пожалуйста, подождите...
+            @lang('main.analysis_message')
         </div>
         <script>
             setTimeout(function(){
@@ -48,28 +50,28 @@
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td>Дата</td>
+                        <td>@lang('domain.created_at')</td>
                         <td>{{$domain->created_at}}</td>
                     </tr>
                     <tr>
-                        <td>Код ответа</td>
-                        <td>{{$domain->status ?? "данные отсутствуют"}}</td>
+                        <td>@lang('domain.status')</td>
+                        <td>{{$domain->status ?? __('domain.null')}}</td>
                     </tr>
                     <tr>
-                        <td>Длина тела</td>
-                        <td>{{$domain->content_length ?? "данные отсутствуют"}}</td>
+                        <td>@lang('domain.content_length')</td>
+                        <td>{{$domain->content_length ?? __('domain.null')}}</td>
                     </tr>
                     <tr>
-                        <td>Заголовок</td>
-                        <td>{{$domain->h1 ?? "данные отсутствуют"}}</td>
+                        <td>@lang('domain.h1')</td>
+                        <td>{{$domain->h1 ?? __('domain.null')}}</td>
                     </tr>
                     <tr>
-                        <td>Ключевые слова</td>
-                        <td>{{$domain->keywords ?? "данные отсутствуют"}}</td>
+                        <td>@lang('domain.keywords')</td>
+                        <td>{{$domain->keywords ?? __('domain.null')}}</td>
                     </tr>
                     <tr>
-                        <td>Описание</td>
-                        <td>{{$domain->description ?? "данные отсутствуют"}}</td>
+                        <td>@lang('domain.description')</td>
+                        <td>{{$domain->description ?? __('domain.null')}}</td>
                     </tr>
                 </tbody>
             </table>                

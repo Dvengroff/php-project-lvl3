@@ -6,29 +6,29 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>
             @hasSection('title')
-                SeoAnalyzer - @yield('title')
+                @lang('main.name') - @yield('title')
             @else
-                SeoAnalyzer
+                @lang('main.name')
             @endif
         </title>
     </head>
     <body>
         <header>
             <nav class="navbar navbar-expand-sm navbar-light bg-light">
-                <span class="navbar-brand" href="#">SeoAnalyzer</span>
+                <span class="navbar-brand" href="#">@lang('main.name')</span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('index')}}">Главная</a>
+                            <a class="nav-link" href="{{route('index')}}">@lang('main.nav.home')</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('domains.index')}}">База страниц</a>
+                            <a class="nav-link" href="{{route('domains.index')}}">@lang('main.nav.list')</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/Dvengroff/php-project-lvl3">GitHub</a>
+                            <a class="nav-link" href="https://github.com/Dvengroff/php-project-lvl3">@lang('main.nav.source')</a>
                         </li>
                     </ul>
                 </div>

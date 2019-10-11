@@ -32,14 +32,7 @@ class DomainController extends Controller
     {
         $validator = Validator::make(
             $request->all(),
-            [
-                'url' => 'required|url|unique:domains,name'
-            ],
-            [
-                'required' => 'Поле с URL не может оставаться пустым!',
-                'url' => 'Введеный URL не является корректным!',
-                'unique' => 'Страница с введенным URL уже анализировалась и находится в базе сервиса!'
-            ]
+            ['url' => 'required|url|unique:domains,name']
         );
         if ($validator->fails()) {
             Log::info("Enter invalid input data");
