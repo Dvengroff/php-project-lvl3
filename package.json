@@ -1,0 +1,31 @@
+{
+  "name": "php-project-lvl3",
+  "version": "1.0.0",
+  "description": "SeoAnalyzer",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dvengroff/php-project-lvl3.git"
+  },
+  "author": "Dmitry Grebenschikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dvengroff/php-project-lvl3/issues"
+  },
+  "homepage": "https://github.com/Dvengroff/php-project-lvl3#readme",
+  "devDependencies": {
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  }
+}
