@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script type="text/javascript" src="./dist/bundle.js"></script>
         <title>
             @hasSection('title')
                 @lang('main.name') - @yield('title')
@@ -40,5 +39,6 @@
         </main>
         <footer>
         </footer>
+        <script type="text/javascript" src="./js/bundle.js"></script>
     </body>
 </html>
